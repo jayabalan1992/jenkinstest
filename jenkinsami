@@ -1,5 +1,4 @@
 {
-
   "variables": {
     "aws_access_key": "",
     "aws_secret_key": "",
@@ -14,7 +13,7 @@
       "region": "us-east-1",
       "source_ami": "{{user `source_ami`}}",
       "ssh_username": "ec2-user",
-      "ami_name": "jenkins-master-2.121.1",
+      "ami_name": "jenkins-master-image{{timestamp}}",
       "instance_type": "t2.micro",
       "ami_description" : "Amazon Linux Image with Jenkins Server",
             "run_tags" : {
