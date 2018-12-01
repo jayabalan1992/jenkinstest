@@ -19,7 +19,7 @@ provider "aws" {
 ##################################################################################
 
 resource "aws_security_group" "jenkinssg" {
-  name = "security_group_for_node_app_websg"
+  name = "security_group_for_jenkinsami"
   ingress {
     from_port = 8080
     to_port = 8080
@@ -45,7 +45,7 @@ resource "aws_instance" "jenkinsMaster" {
   ami           = "${data.aws_ami.jenkins_ami_number.id}"
   instance_type = "t2.micro"
   count = 1
-  security_groups = ["${aws_security_group.jenkinssg.id}"]
+  vpc_security_group_ids  = ["${aws_security_group.jenkinssg.id}"]
   associate_public_ip_address = true
   key_name        = "${var.key_name}"
 }
