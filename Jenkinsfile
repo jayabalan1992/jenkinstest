@@ -1,9 +1,5 @@
 pipeline {
-    agent { docker 
-              { 
-                image 'jayabalan/packerbuild:1'
-#                args '-u root:root'
-    } }
+    agent { docker { image 'jayabalan/packerbuild:1' } }
     stages {
         stage('buildImage') {
             steps {
