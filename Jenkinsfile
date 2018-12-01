@@ -1,10 +1,9 @@
 pipeline {
     agent { docker { image 'jayabalan/packerbuild:1' } }
     stages {
-        stage('buildImage') {
+        stage('Initialize') {
             steps {
-                sh 'pwd'
-                sh 'ls'
+                sh 'terraform init'
             }
         }
         stage('buildpacker') {
@@ -14,8 +13,7 @@ pipeline {
         }
 	stage('RunInstance') {
             steps {
-	        sh 'terraform init'
-		sh 'terraform apply -var aws_access_key=${AWS_ACCESS_KEY_ID} -var aws_secret_key=${AWS_SECRET_ACCESS_KEY}'
+		sh 'terraform apply -auto-approve -var aws_access_key=${AWS_ACCESS_KEY_ID} -var aws_secret_key=${AWS_SECRET_ACCESS_KEY}'
        	    }
         }
     }
